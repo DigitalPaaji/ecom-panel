@@ -1,0 +1,15 @@
+{
+  "Slider": {
+    "dashboard": "Tableau de bord",
+    "banners": "Bannières",
+    "category": "Catégorie",
+    "create-products": "Créer un produit",
+    "products": "Produits",
+    "orders": "Commandes",
+    "collection": "Collections",
+    "customers": "Clients",
+    "inventory": "Inventaire",
+    "analytics": "Analytique",
+    "settings": "Paramètres"
+  }
+}

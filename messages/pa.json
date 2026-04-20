@@ -1,0 +1,15 @@
+{
+  "Slider": {
+    "dashboard": "ਡੈਸ਼ਬੋਰਡ",
+    "banners": "ਬੈਨਰ",
+    "category": "ਸ਼੍ਰੇਣੀ",
+    "create-products": "ਉਤਪਾਦ ਬਣਾਓ",
+    "products": "ਉਤਪਾਦ",
+    "orders": "ਆਰਡਰ",
+    "collection": "ਸੰਗ੍ਰਹਿ",
+    "customers": "ਗਾਹਕ",
+    "inventory": "ਸਟਾਕ",
+    "analytics": "ਵਿਸ਼ਲੇਸ਼ਣ",
+    "settings": "ਸੈਟਿੰਗਜ਼"
+  }
+}
