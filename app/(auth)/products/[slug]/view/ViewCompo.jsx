@@ -106,6 +106,9 @@ const ViewCompo = ({ slug }) => {
     )
   }
 
+  const allImages = [product.thumbnail,...product.images]
+
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-black dark:text-white py-8 px-4 sm:px-6 lg:px-8">
       <div className="container mx-auto">
@@ -147,9 +150,9 @@ const ViewCompo = ({ slug }) => {
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden p-4">
               {/* Main Image */}
               <div className="aspect-square bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden mb-4 relative">
-                {product.images && product.images.length > 0 ? (
+                {allImages && allImages.length > 0 ? (
                   <img
-                    src={`${img_url}${product.images[selectedImage]}`}
+                    src={`${img_url}${allImages[selectedImage]}`}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
@@ -161,9 +164,9 @@ const ViewCompo = ({ slug }) => {
               </div>
 
               {/* Thumbnails */}
-              {product.images && product.images.length > 1 && (
+              {allImages && allImages.length > 1 && (
                 <div className="grid grid-cols-4 gap-2">
-                  {product.images.map((image, index) => (
+                  {allImages.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setSelectedImage(index)}

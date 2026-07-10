@@ -6,9 +6,11 @@ import { FaEdit, FaTrash, FaChevronLeft, FaChevronRight, FaBoxOpen, FaRupeeSign,
 import { MdImageNotSupported } from 'react-icons/md'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
+import { useSearchParams } from 'next/navigation'
 
-const ProductCompo = ({page}) => {
-  // State for data and UI
+const ProductCompo = () => {
+   const searchParam = useSearchParams()
+   const page = searchParam.get("page") || 1
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   
@@ -121,10 +123,7 @@ const handelDeleteProduct = async (id)=>{
                 // Product Rows
                 products.map((item) => {
                   // Logic to get the first image safely
-                  const displayImage = item.images && item.images.length > 0 
-                    ? item.images[0] 
-                    : (item.image || null);
-
+                  const displayImage = item.thumbnail
                   return (
                     <tr key={item._id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors group">
                       

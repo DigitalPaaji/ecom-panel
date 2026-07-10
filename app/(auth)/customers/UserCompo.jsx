@@ -1,7 +1,7 @@
 "use client"
 import { base_url } from '@/app/components/urls'
 import axios from 'axios'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 // Make sure to install: npm install react-icons
 import { FaUser, FaEnvelope, FaCalendarAlt, FaEdit, FaTrash, FaChevronLeft, FaChevronRight } from 'react-icons/fa'
@@ -9,6 +9,8 @@ import { HiCheckCircle, HiXCircle } from 'react-icons/hi'
 
 const UserCompo = () => {
     const [users, setUsers] = useState([]);
+     const searchQueries = useSearchParams()
+        const page = searchQueries.get("page") || 1;
     const [loading, setLoading] = useState(false);
     const route = useRouter()  
 
@@ -38,7 +40,7 @@ const UserCompo = () => {
     }
 
     useEffect(() => {
-        fetchUser(1); // Fetch page 1 on mount
+        fetchUser(page); // Fetch page 1 on mount
     }, []);
 
     const handlePageChange = (newPage) => {

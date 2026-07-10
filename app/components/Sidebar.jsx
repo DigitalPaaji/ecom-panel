@@ -14,7 +14,7 @@ import {
   FiTruck,
   
 } from 'react-icons/fi';
-import { MdCreateNewFolder, MdOutlineCategory } from "react-icons/md";
+import { MdCreateNewFolder, MdOutlineCategory, MdOutlineSlowMotionVideo } from "react-icons/md";
 import { TfiLayoutSlider } from "react-icons/tfi";
 import { BsCollectionFill } from "react-icons/bs";
 
@@ -23,6 +23,7 @@ import LocaleSwitcher from './LocaleSwitcher';
 import { useTranslations } from 'next-intl';
 import axios from 'axios';
 import { base_url } from './urls';
+import { LiaBlogSolid } from 'react-icons/lia';
 axios.defaults.withCredentials=true
 
 
@@ -34,7 +35,7 @@ const Sidebar = () => {
   const t = useTranslations('Slider') ;
   
  
-
+ 
   const navItems = [
     { name: t("dashboard"), href: '/', icon: FiLayout },
     { name: t("banners") || "banners", href: '/banners', icon: TfiLayoutSlider },
@@ -44,7 +45,9 @@ const Sidebar = () => {
     { name: t("products"), href: '/products', icon: FiPackage },
     { name: t("orders"), href: '/orders', icon: FiShoppingBag },
     { name: t("customers"), href: '/customers', icon: FiUsers },
-    { name: t("inventory"), href: '/inventory', icon: FiTruck },
+    { name: t("Videos"), href: '/videos', icon: MdOutlineSlowMotionVideo  },
+    { name: t("Blogs"), href: '/blogs', icon: LiaBlogSolid },
+    // { name: t("inventory"), href: '/inventory', icon: FiTruck },
     { name: t("collection"), href: '/collections', icon: BsCollectionFill },
     { name: t("analytics"), href: '/analytics', icon: FiBarChart2 },
     { name: t("settings"), href: '/settings', icon: FiSettings },

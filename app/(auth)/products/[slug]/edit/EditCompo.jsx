@@ -14,6 +14,7 @@ import {
 import { MdOutlineCancel, MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 import RichEditor from "../../create/RichEditor";
+import ReviewSection from "@/app/components/ReviewSection";
 
 const EditCompo = ({ slug }) => {
   const [product, setProduct] = useState({
@@ -21,6 +22,8 @@ const EditCompo = ({ slug }) => {
     description: "",
     isActive: false,
     isFeatured: false,
+     isNewArrived: false,
+    isBestSaller: false,
     mrp: 0,
     name: "",
     shortDescription: "",
@@ -259,6 +262,8 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
  
     formData.append("isActive", product.isActive);
     formData.append("isFeatured", product.isFeatured);
+    formData.append("isNewArrived", product.isNewArrived);
+    formData.append("isBestSaller", product.isBestSaller);
     formData.append("details", JSON.stringify(product.details));
     
    
@@ -275,7 +280,9 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
     });
 
    
-
+if(product?.newthumbnail){
+formData.append("newthumbnail",product?.newthumbnail)
+}
 
 
 
@@ -428,7 +435,78 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
             </div>
           </div>
 
-          {/*  */}
+        
+
+
+
+
+
+
+
+<div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-2xl shadow-sm">
+            <h2 className="text-lg font-bold mb-6 text-zinc-800 dark:text-zinc-200">Product Thumbnail</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4 mb-6">
+              
+              {/* {product.images.map((item, index) => (
+                <div key={index} className="relative group aspect-square rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-700">
+                  <img src={`${img_url}${item}`} alt="" className="w-full h-full object-cover" />
+                  <div className="absolute top-1 left-1 bg-black/60 text-white text-[10px] px-1.5 rounded">Idx: {index}</div>
+                  <button onClick={() => handelRemoveImg(index)} className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <MdDelete className="text-white text-2xl" />
+                  </button>
+                </div>
+              ))}
+              
+              {product.newimages.map((file, index) => (
+                <div key={index} className="relative group aspect-square rounded-xl overflow-hidden border-2 border-dashed border-blue-400">
+                  <img src={URL.createObjectURL(file)} alt="" className="w-full h-full object-cover opacity-70" />
+                  <div className="absolute top-2 left-2 bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full">New</div>
+                  <button onClick={() => handelRemovenewImg(index)} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-red-500/20 transition-opacity">
+                    <MdOutlineCancel className="text-red-600 text-3xl" />
+                  </button>
+                </div>
+              ))} */}
+
+
+              { product.thumbnail && !product.newthumbnail && 
+                <div  className="relative group aspect-square rounded-xl overflow-hidden border-2 border-dashed border-blue-400">
+                  <img src={`${img_url}${product.thumbnail}`} alt="" className="w-full h-full object-cover opacity-70" />
+                  {/* <div className="absolute top-2 left-2 bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full">New</div>
+                  <button onClick={() => setProduct(p => ({ ...p, newthumbnail: null }))} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-red-500/20 transition-opacity">
+                    <MdOutlineCancel className="text-red-600 text-3xl" />
+                  </button> */}
+                </div>
+             }
+
+
+{product.newthumbnail && 
+                <div  className="relative group aspect-square rounded-xl overflow-hidden border-2 border-dashed border-blue-400">
+                  <img src={URL.createObjectURL(product.newthumbnail)} alt="" className="w-full h-full object-cover opacity-70" />
+                  <div className="absolute top-2 left-2 bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full">New</div>
+                  <button onClick={() => setProduct(p => ({ ...p, newthumbnail: null }))} className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 bg-red-500/20 transition-opacity">
+                    <MdOutlineCancel className="text-red-600 text-3xl" />
+                  </button>
+                </div>
+             }
+
+
+            </div>
+            
+            <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-zinc-300 dark:border-zinc-700 rounded-2xl cursor-pointer hover:bg-zinc-50 dark:hover:bg-zinc-800/50 transition">
+              <FaCloudUploadAlt className="text-3xl text-blue-500 mb-2" />
+              <span className="text-zinc-500 dark:text-zinc-400 text-sm font-medium">Drop new files or click to browse</span>
+              <input
+                type="file"  hidden accept="image/*"
+                onChange={(e) => setProduct(p => ({ ...p, newthumbnail: e.target.files[0] }))}
+              />
+            </label>
+          </div>
+
+
+
+
+
+
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-2xl shadow-sm">
             <h2 className="text-lg font-bold mb-6 text-zinc-800 dark:text-zinc-200">Product Media</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-4 mb-6">
@@ -618,6 +696,8 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
               {[
                 { label: "Active", key: "isActive", icon: FaLayerGroup, color: "text-blue-500" },
                 { label: "Featured", key: "isFeatured", icon: FaCheckCircle, color: "text-emerald-500" },
+                { label: "New Arrived", key: "isNewArrived", icon: FaCheckCircle, color: "text-yellow-500" },
+                { label: "Best Products", key: "isBestSaller", icon: FaCheckCircle, color: "text-red-500" },
               ].map((toggle) => (
                 <div key={toggle.key} className="flex items-center justify-between p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800">
                   <div className="flex items-center gap-3">
@@ -687,6 +767,8 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
             </div>
           </div>
           
+<ReviewSection  productid={product._id} />
+
 
 
           

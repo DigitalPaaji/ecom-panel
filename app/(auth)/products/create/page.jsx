@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { MdCancel, MdCloudUpload, MdDelete, MdSave, MdLightMode, MdDarkMode, MdDeleteSweep } from 'react-icons/md'
 import { FaTag, FaBoxOpen, FaDollarSign, FaImage, FaSearch, FaCheckCircle, FaLayerGroup, FaYandexInternational } from "react-icons/fa";
 import axios from 'axios';
@@ -29,6 +29,7 @@ const [variant, setVariant] = useState({
       value:""
     }
   });
+  const fileInputRef = useRef(null);
   const [attributes, setAttributes] = useState([{ key: '', value: '' }]);
   const [productData, setProductData] = useState({
     name: "",
@@ -40,8 +41,11 @@ const [variant, setVariant] = useState({
     stock: "",
     tags: [],
     images: [],
+    thumbnail:null,
     category:"",
     isFeatured: false,
+    isNewArrived: false,
+    isBestSaller: false,
     isActive: true,
     hasVariants: false,
     seo: {
@@ -148,6 +152,8 @@ const [variant, setVariant] = useState({
   formData.append("description", productData.description);
   formData.append("shortDescription", productData.shortDescription);
   formData.append("isFeatured", productData.isFeatured);
+  formData.append("isNewArrived", productData.isNewArrived);
+  formData.append("isBestSaller", productData.isBestSaller);
   formData.append("isActive", productData.isActive);
   formData.append("category", productData.category);
   formData.append("details",JSON.stringify(productData.details));
@@ -155,6 +161,12 @@ const [variant, setVariant] = useState({
   productData.images.forEach((file,index) => {
     formData.append(`images`, file);
   });
+  if(productData.thumbnail){
+     formData.append(`thumbnail`, productData.thumbnail);
+  }else{
+    toast.warn("Thumbnail is required")
+    return 
+  }
 
 
   formData.append("seo", JSON.stringify(productData.seo));
@@ -513,6 +525,81 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
           </div>
 
 
+
+
+
+
+<div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 transition-colors">
+  <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white border-b border-gray-100 dark:border-gray-700 pb-2 flex items-center gap-2">
+    <FaImage className="text-blue-500 dark:text-blue-400"/> Thumbnail
+  </h2>
+
+  <label htmlFor="thumbnail" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors mb-4 group">
+    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+      <MdCloudUpload className="text-4xl text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
+      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+      <p className="text-xs text-gray-500 dark:text-gray-500">SVG, PNG, JPG or GIF</p>
+    </div>
+    <input 
+      type="file" 
+      hidden 
+      id="thumbnail" 
+      accept="image/*" 
+      ref={fileInputRef} /* <-- 1. Attach the ref here */
+      onChange={(e) => setProductData(prev => ({...prev, thumbnail: e.target.files[0]}))} 
+    />
+  </label>
+
+  <div className="">
+    {productData.thumbnail && 
+      <div className=" w-36 h-36 relative group aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+        <div className="absolute inset-0 bg-black/50 hidden group-hover:flex justify-center items-center transition-opacity z-10">
+          <MdDelete 
+            className="text-white text-2xl cursor-pointer hover:text-red-400" 
+            onClick={() => {
+              // 2. Clear the state
+              setProductData(prev => ({...prev, thumbnail: null}));
+              // 3. Reset the physical input value so the same file can trigger onChange again
+              if (fileInputRef.current) {
+                fileInputRef.current.value = ""; 
+              }
+            }} 
+          />
+        </div>
+        <img 
+          src={URL.createObjectURL(productData.thumbnail)} 
+          alt="Preview" 
+          className="w-36 h-36"
+        />
+      </div>
+    }
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
          
           <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 transition-colors">
             <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white border-b border-gray-100 dark:border-gray-700 pb-2 flex items-center gap-2">
@@ -571,6 +658,34 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
                     className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${productData.isFeatured ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}
                   >
                     <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${productData.isFeatured ? 'translate-x-7' : 'translate-x-0'}`} />
+                  </div>
+                </div>
+
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <FaCheckCircle className={productData.isNewArrived ? "text-yellow-500 dark:text-yellow-400" : "text-gray-400 dark:text-gray-500"} />
+                    <span className="text-gray-700 dark:text-gray-300"> New Arrived Product</span>
+                  </div>
+                  <div 
+                    onClick={() => setProductData(prev => ({ ...prev, isNewArrived: !prev.isNewArrived }))} 
+                    className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${productData.isNewArrived ? 'bg-yellow-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                  >
+                    <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${productData.isNewArrived ? 'translate-x-7' : 'translate-x-0'}`} />
+                  </div>
+                </div>
+
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <FaCheckCircle className={productData.isBestSaller ? "text-red-500 dark:text-red-400" : "text-gray-400 dark:text-gray-500"} />
+                    <span className="text-gray-700 dark:text-gray-300">Best  Product</span>
+                  </div>
+                  <div 
+                    onClick={() => setProductData(prev => ({ ...prev, isBestSaller: !prev.isBestSaller }))} 
+                    className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${productData.isBestSaller ? 'bg-red-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                  >
+                    <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${productData.isBestSaller ? 'translate-x-7' : 'translate-x-0'}`} />
                   </div>
                 </div>
 

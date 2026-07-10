@@ -103,7 +103,7 @@ const Dashboard = () => {
                 <XAxis dataKey="name" stroke="currentColor" className="text-slate-500 dark:text-slate-400 text-xs" />
                 <YAxis stroke="currentColor" className="text-slate-500 dark:text-slate-400 text-xs" />
                 
-                {/* Using the Custom Tailwind Tooltip */}
+                {/*     */}
                 <Tooltip content={<CustomTooltip />} />
                 <Legend wrapperStyle={{ paddingTop: '20px' }} />
                 

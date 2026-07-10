@@ -1,4 +1,4 @@
-{
+{ 
   
 "Slider":{
 "dashboard":"Dashboard",
@@ -11,6 +11,8 @@
 "customers":"Customers",
 "inventory":"Inventory",
 "analytics":"Analytics",
-"settings":"Settings"
+"settings":"Settings",
+"Blogs":"Blogs",
+"Videos":"Videos"
   }
 }
