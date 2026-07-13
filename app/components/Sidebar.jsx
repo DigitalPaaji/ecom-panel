@@ -24,6 +24,7 @@ import { useTranslations } from 'next-intl';
 import axios from 'axios';
 import { base_url } from './urls';
 import { LiaBlogSolid } from 'react-icons/lia';
+import { RiCoupon3Line } from 'react-icons/ri';
 axios.defaults.withCredentials=true
 
 
@@ -47,13 +48,14 @@ const Sidebar = () => {
     { name: t("customers"), href: '/customers', icon: FiUsers },
     { name: t("Videos"), href: '/videos', icon: MdOutlineSlowMotionVideo  },
     { name: t("Blogs"), href: '/blogs', icon: LiaBlogSolid },
-    // { name: t("inventory"), href: '/inventory', icon: FiTruck },
+  
     { name: t("collection"), href: '/collections', icon: BsCollectionFill },
+    { name: t("coupons"), href: '/coupons', icon: RiCoupon3Line  },
     { name: t("analytics"), href: '/analytics', icon: FiBarChart2 },
     { name: t("settings"), href: '/settings', icon: FiSettings },
-  ];
+  ]; 
 
-
+  // { name: t("inventory"), href: '/inventory', icon: FiTruck },
 const fetchAdmin= async()=>{
   try {setLoading(true)
     const response = await axios.get(`${base_url}/admin/get`)
