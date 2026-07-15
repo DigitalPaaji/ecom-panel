@@ -116,7 +116,7 @@ const ViewCompo = ({ slug }) => {
         <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center space-x-4">
             <Link 
-              href="/admin/products" 
+              href="/products" 
               className="p-2 hover:bg-gray-200 dark:hover:bg-gray-800 rounded-full transition-colors"
             >
               <FaArrowLeft className="text-gray-600 dark:text-gray-300" />
@@ -271,18 +271,19 @@ const ViewCompo = ({ slug }) => {
                             {variant.stock} units
                           </p>
                         </div>
-                        <div>
+                           <div>
                           <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">MRP</p>
-                          <p className="text-sm font-medium text-gray-500 dark:text-gray-400 line-through">
-                            ₹{variant.mrp}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Base Price</p>
                           <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
                             ₹{variant.basePrice}
                           </p>
                         </div>
+                        <div>
+                          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Base Price</p>
+                          <p className="text-sm font-medium text-gray-500 dark:text-gray-400 line-through">
+                            ₹{variant.mrp}
+                          </p>
+                        </div>
+                     
                       </div>
 
                       {/* Variant Images */}
