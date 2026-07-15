@@ -274,13 +274,13 @@ const ViewCompo = ({ slug }) => {
                            <div>
                           <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">MRP</p>
                           <p className="text-sm font-bold text-indigo-600 dark:text-indigo-400">
-                            ₹{variant.basePrice}
+                            ₹{variant.mrp}
                           </p>
                         </div>
                         <div>
                           <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">Base Price</p>
                           <p className="text-sm font-medium text-gray-500 dark:text-gray-400 line-through">
-                            ₹{variant.mrp}
+                            ₹{variant.basePrice}
                           </p>
                         </div>
                      
