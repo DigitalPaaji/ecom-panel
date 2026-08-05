@@ -24,6 +24,7 @@ const EditCompo = ({ slug }) => {
     isFeatured: false,
      isNewArrived: false,
     isBestSaller: false,
+    isTop: false,
     mrp: 0,
     name: "",
     shortDescription: "",
@@ -38,7 +39,7 @@ const EditCompo = ({ slug }) => {
     variants: [] // Added variants array
   });
   const route = useRouter();
-
+console.log(product)
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [newTag, setNewTag] = useState("");
@@ -264,6 +265,7 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
     formData.append("isFeatured", product.isFeatured);
     formData.append("isNewArrived", product.isNewArrived);
     formData.append("isBestSaller", product.isBestSaller);
+    formData.append("isTop", product.isTop);
     formData.append("details", JSON.stringify(product.details));
     
    
@@ -698,6 +700,7 @@ formData.append("newthumbnail",product?.newthumbnail)
                 { label: "Featured", key: "isFeatured", icon: FaCheckCircle, color: "text-emerald-500" },
                 { label: "New Arrived", key: "isNewArrived", icon: FaCheckCircle, color: "text-yellow-500" },
                 { label: "Best Products", key: "isBestSaller", icon: FaCheckCircle, color: "text-red-500" },
+                { label: "Top Products", key: "isTop", icon: FaCheckCircle, color: "text-yellow-500" },
               ].map((toggle) => (
                 <div key={toggle.key} className="flex items-center justify-between p-3 rounded-xl bg-zinc-50 dark:bg-zinc-800">
                   <div className="flex items-center gap-3">

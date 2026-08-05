@@ -47,7 +47,7 @@ const [variant, setVariant] = useState({
     isNewArrived: false,
     isBestSaller: false,
     isActive: true,
-    hasVariants: false,
+    isTop: false,
     seo: {
       metaTitle: "",
       metaDescription: "",
@@ -155,6 +155,7 @@ const [variant, setVariant] = useState({
   formData.append("isNewArrived", productData.isNewArrived);
   formData.append("isBestSaller", productData.isBestSaller);
   formData.append("isActive", productData.isActive);
+  formData.append("isTop", productData.isTop);
   formData.append("category", productData.category);
   formData.append("details",JSON.stringify(productData.details));
   formData.append(`tags`,JSON.stringify(productData.tags));
@@ -217,14 +218,14 @@ const handleChange = (e) => {
       [name]: type === 'checkbox' ? checked : value
     }));
   };
-  const handleAttributeChange = (index, field, value) => {
-    const newAttributes = [...attributes];
-    newAttributes[index][field] = value;
-    setAttributes(newAttributes);
-  };
+  // const handleAttributeChange = (index, field, value) => {
+  //   const newAttributes = [...attributes];
+  //   newAttributes[index][field] = value;
+  //   setAttributes(newAttributes);
+  // };
 
-  const addAttribute = () => setAttributes([...attributes, { key: '', value: '' }]);
-  const removeAttribute = (index) => setAttributes(attributes.filter((_, i) => i !== index));
+  // const addAttribute = () => setAttributes([...attributes, { key: '', value: '' }]);
+  // const removeAttribute = (index) => setAttributes(attributes.filter((_, i) => i !== index));
 
 const toggleImage = (index)=>{
 if(variant.images.includes(index)){
@@ -692,14 +693,14 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
               
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <FaLayerGroup className={productData.hasVariants ? "text-blue-500 dark:text-blue-400" : "text-gray-400 dark:text-gray-500"} />
-                    <span className="text-gray-700 dark:text-gray-300">Has Variants</span>
+                    <FaLayerGroup className={productData.isTop ? "text-blue-500 dark:text-blue-400" : "text-gray-400 dark:text-gray-500"} />
+                    <span className="text-gray-700 dark:text-gray-300">on Top</span>
                   </div>
                   <div 
-                    onClick={() => setProductData(prev => ({ ...prev, hasVariants: !prev.hasVariants }))} 
-                    className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${productData.hasVariants ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'}`}
+                    onClick={() => setProductData(prev => ({ ...prev, isTop: !prev.isTop }))} 
+                    className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer transition-colors duration-300 ${productData.isTop ? 'bg-blue-600' : 'bg-gray-300 dark:bg-gray-600'}`}
                   >
-                    <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${productData.hasVariants ? 'translate-x-7' : 'translate-x-0'}`} />
+                    <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${productData.isTop ? 'translate-x-7' : 'translate-x-0'}`} />
                   </div>
                 </div>
               </div>
@@ -840,7 +841,12 @@ onChange={(e)=>setVariant(prev=>({...prev,attributes:{...prev.attributes,value:e
               ))}
             </div>
 
+
+
+  
+
         </div>
+        
       
       </div>
 
