@@ -71,6 +71,21 @@ const handleChangeStatus = async (type, value) => {
   }
 };
 
+const DeleteOrder = async (id)=>{
+  try {
+    const response = await axios.delete(`${base_url}/order/delete/${id}`);
+    const data = await response.data;
+    if(data.success){
+      toast.success(data.message)
+   router.back()
+    }
+
+
+  } catch (error) {
+   toast.error(error?.response?.data?.message) 
+  }
+}
+
   useEffect(() => {
     fetchOrder();
   }, [id]);
@@ -187,6 +202,13 @@ const handleChangeStatus = async (type, value) => {
             >
               {order.paymentStatus}
             </span>
+
+             <button
+             onClick={()=>DeleteOrder(id)}
+              className={`rounded-full cursor-pointer px-4 py-2 text-sm font-medium bg-gray-100 text-gray-700 dark:bg-white/10 dark:text-gray-300 `}
+            >
+           Delete Order
+            </button>
           </div>
         </div>
 
