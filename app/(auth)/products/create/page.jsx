@@ -48,6 +48,7 @@ const [variant, setVariant] = useState({
     isBestSaller: false,
     isActive: true,
     isTop: false,
+    isTopImage:null,    
     seo: {
       metaTitle: "",
       metaDescription: "",
@@ -156,6 +157,7 @@ const [variant, setVariant] = useState({
   formData.append("isBestSaller", productData.isBestSaller);
   formData.append("isActive", productData.isActive);
   formData.append("isTop", productData.isTop);
+  formData.append("isTopImage", productData.isTopImage);
   formData.append("category", productData.category);
   formData.append("details",JSON.stringify(productData.details));
   formData.append(`tags`,JSON.stringify(productData.tags));
@@ -703,6 +705,29 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
                     <div className={`bg-white w-5 h-5 rounded-full shadow-md transform transition-transform duration-300 ${productData.isTop ? 'translate-x-7' : 'translate-x-0'}`} />
                   </div>
                 </div>
+
+
+{productData.isTop && <div className='grid grid-cols-3 gap-5 '>
+
+{[ ...(productData?.images || [])].filter(Boolean).map((itm,index)=>(
+
+  <div className='cursor-pointer relative' onClick={()=>setProductData(prev=>({...prev,isTopImage: prev.isTopImage==index ? null :index }))}>
+<img src={URL.createObjectURL(itm)} alt="" />
+
+{productData.isTopImage===index && 
+<FaCheckCircle className='absolute top-1 right-2 text-green-800' />
+}
+
+    </div>
+))}
+
+
+
+  </div>
+}
+
+
+
               </div>
             </div>
 

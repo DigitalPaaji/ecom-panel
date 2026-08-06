@@ -34,6 +34,7 @@ const EditCompo = ({ slug }) => {
     images: [],
     seo: { keywords: [], metaDescription: "", metaTitle: "" },
     newimages: [],
+    isTopImage:0,
     category: "",
     details: {},
     variants: [] // Added variants array
@@ -266,6 +267,7 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
     formData.append("isNewArrived", product.isNewArrived);
     formData.append("isBestSaller", product.isBestSaller);
     formData.append("isTop", product.isTop);
+    formData.append("isTopImage", product.isTopImage);
     formData.append("details", JSON.stringify(product.details));
     
    
@@ -717,6 +719,49 @@ formData.append("newthumbnail",product?.newthumbnail)
               ))}
             </div>
           </div>
+
+
+{product.isTop  &&
+
+
+ <div className="grid grid-cols-3 gap-2">
+                          {product.images.map((img, imgIdx) => {
+                            const isSelected =  product.isTopImage == imgIdx
+                            return (
+                              <div 
+                                key={imgIdx} 
+                                onClick={() => setProduct(prev=>({...prev,isTopImage: isSelected ? null :imgIdx }))}
+                                className={`w-12 h-12 rounded cursor-pointer overflow-hidden border-2 transition-all ${
+                                  isSelected ? 'border-blue-500 scale-105 shadow-md' : 'border-transparent opacity-50 hover:opacity-100'
+                                }`}
+                              >
+                                <img src={`${img_url}${img}`} alt="" className="w-full h-full object-cover" />
+                              </div>
+                            )
+                          })}
+
+                           {product.newimages.map((img, imgIdx) => {
+                const isSelected =  product.isTopImage == (product.images.length+imgIdx)
+            
+                            return (
+                              <div 
+                                key={imgIdx} 
+                                  onClick={() => setProduct(prev=>({...prev,isTopImage: isSelected ? null :product.images.length+imgIdx }))}
+
+                                className={`w-12 h-12 rounded cursor-pointer overflow-hidden border-2 transition-all ${
+                                  isSelected ? 'border-blue-500 scale-105 shadow-md' : 'border-transparent opacity-50 hover:opacity-100'
+                                }`}
+                              >
+                                <img src={URL.createObjectURL(img)} alt="" className="w-full h-full object-cover" />
+                              </div>
+                            )
+})}
+                        </div>
+                  
+
+}
+
+
 
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-2xl shadow-sm">
             <h2 className="text-lg font-bold mb-4 text-zinc-800 dark:text-zinc-200">Tags</h2>

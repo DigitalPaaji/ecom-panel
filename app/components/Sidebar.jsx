@@ -39,7 +39,7 @@ const Sidebar = () => {
  
   const navItems = [
     { name: t("dashboard"), href: '/', icon: FiLayout },
-    { name: t("banners") || "banners", href: '/banners', icon: TfiLayoutSlider },
+    // { name: t("banners") || "banners", href: '/banners', icon: TfiLayoutSlider },
 
     { name: t("category"), href: '/category', icon: MdOutlineCategory },
     { name: t("create-products"), href: '/products/create', icon: MdCreateNewFolder  },
@@ -134,15 +134,15 @@ const handelLogout = async()=>{
       </button>
 
 
-      <div className="flex  items-center gap-3 px-2 mb-10">
-        <div className=" ">
+      <div className="flex  items-center gap-3 px-2 mb-">
+        <div className=" flex items-center  ">
         
-          <img src="/icon.png" alt="" className={`  ${isCollapsed ? "h-10":"h-12"} `} />
+       
+ <p className={`${isCollapsed ? " text-2xl text-[#d6b41d] font-semibold px-2 border border-[#d6b41d] ":" hidden"} `}>S</p>
+
         </div>
         {!isCollapsed && (
-          <span className="font-bold text-xl tracking-tight text-slate-800 dark:text-white">
-            DashBoard
-          </span>
+          <img src="/logo.png" alt="" className={`  h-12 `} />
         )}
       </div>
 
