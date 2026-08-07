@@ -812,7 +812,7 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
           <input type="number" name="mrp" value={variant.mrp} onChange={handleChange} min="0" placeholder="MRP" className={`${commonInputClass} focus:ring-2 focus:ring-blue-500 outline-none`} />
         </div>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">Compair Price</label>
+          <label className="block text-xs text-gray-500 mb-1">Base Price</label>
           {/* Note: Changed to type="number" to match your schema */}
           <input type="number" name="basePrice" value={variant.basePrice} onChange={handleChange} placeholder="+/- Amount" className={`${commonInputClass} focus:ring-2 focus:ring-blue-500 outline-none`} />
         </div>

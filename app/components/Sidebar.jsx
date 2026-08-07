@@ -142,7 +142,7 @@ const handelLogout = async()=>{
 
         </div>
         {!isCollapsed && (
-          <img src="/logo.png" alt="" className={`  h-12 invert dark:invert-0 `} />
+          <img src="/logo.png" alt="" className={`  h-12  brightness-0  dark:brightness-100 `} />
         )}
       </div>
 

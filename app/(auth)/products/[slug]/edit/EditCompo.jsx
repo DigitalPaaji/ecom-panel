@@ -649,7 +649,7 @@ formData.append("newthumbnail",product?.newthumbnail)
                               <div 
                                 key={imgIdx} 
                                 onClick={() => toggleVariantImage(vIndex, imgIdx)}
-                                className={`w-12 h-12 rounded cursor-pointer overflow-hidden border-2 transition-all ${
+                                className={`w-36 h-36 rounded cursor-pointer overflow-hidden border-2 transition-all ${
                                   isSelected ? 'border-blue-500 scale-105 shadow-md' : 'border-transparent opacity-50 hover:opacity-100'
                                 }`}
                               >
@@ -664,7 +664,7 @@ formData.append("newthumbnail",product?.newthumbnail)
                               <div 
                                 key={imgIdx} 
                                 onClick={() => toggleVariantImage(vIndex, product.images.length+imgIdx)}
-                                className={`w-12 h-12 rounded cursor-pointer overflow-hidden border-2 transition-all ${
+                                className={`w-36 h-36 rounded cursor-pointer overflow-hidden border-2 transition-all ${
                                   isSelected ? 'border-blue-500 scale-105 shadow-md' : 'border-transparent opacity-50 hover:opacity-100'
                                 }`}
                               >
