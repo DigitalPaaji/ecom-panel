@@ -540,7 +540,7 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
   <label htmlFor="thumbnail" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors mb-4 group">
     <div className="flex flex-col items-center justify-center pt-5 pb-6">
       <MdCloudUpload className="text-4xl text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
-      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+      <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span>  </p>
       <p className="text-xs text-gray-500 dark:text-gray-500">SVG, PNG, JPG or GIF</p>
     </div>
     <input 
@@ -612,7 +612,7 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
             <label htmlFor="images" className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700/50 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors mb-4 group">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
                 <MdCloudUpload className="text-4xl text-gray-400 dark:text-gray-500 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors" />
-                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span>  </p>
                 <p className="text-xs text-gray-500 dark:text-gray-500">SVG, PNG, JPG or GIF</p>
               </div>
               <input 
