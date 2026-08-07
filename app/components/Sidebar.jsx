@@ -138,11 +138,11 @@ const handelLogout = async()=>{
         <div className=" flex items-center  ">
         
        
- <p className={`${isCollapsed ? " text-2xl text-[#d6b41d] font-semibold px-2 border border-[#d6b41d] ":" hidden"} `}>S</p>
+ <p className={`${isCollapsed ? " text-2xl dark:text-[#d6b41d] font-semibold px-2 border dark:border-[#d6b41d] ":" hidden"} `}>S</p>
 
         </div>
         {!isCollapsed && (
-          <img src="/logo.png" alt="" className={`  h-12 `} />
+          <img src="/logo.png" alt="" className={`  h-12 invert dark:invert-0 `} />
         )}
       </div>
 
