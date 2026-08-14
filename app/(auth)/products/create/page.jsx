@@ -833,6 +833,7 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
   <option value="size">Size</option>
   <option value="weight">Weight</option>
   <option value="color">Color</option>
+  <option value="quantity">Quantity</option>
 
 </select>
 

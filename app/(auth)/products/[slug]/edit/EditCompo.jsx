@@ -602,6 +602,7 @@ formData.append("newthumbnail",product?.newthumbnail)
                           <option value="weight">Weight</option>
                           <option value="color">Color</option>
                           <option value="size">Size</option>
+                          <option value="quantity">Quantity</option>
                        
                         </select>
                       </div>
