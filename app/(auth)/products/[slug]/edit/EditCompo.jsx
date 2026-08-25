@@ -625,14 +625,14 @@ formData.append("newthumbnail",product?.newthumbnail)
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-zinc-500 mb-1">Base Price</label>
+                        <label className="block text-xs font-semibold text-zinc-500 mb-1">MRP</label>
                         <input 
                           type="number" value={variant.basePrice} onChange={(e) => handleVariantChange(vIndex, 'basePrice', e.target.value)}
                           className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg p-2 outline-none dark:text-white text-sm"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-semibold text-zinc-500 mb-1">MRP</label>
+                        <label className="block text-xs font-semibold text-zinc-500 mb-1">Base Price</label>
                         <input 
                           type="number" value={variant.mrp} onChange={(e) => handleVariantChange(vIndex, 'mrp', e.target.value)}
                           className="w-full bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg p-2 outline-none dark:text-white text-sm"

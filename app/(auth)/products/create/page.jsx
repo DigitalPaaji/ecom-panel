@@ -816,11 +816,11 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
           <input type="number" name="stock" value={variant.stock} onChange={handleChange} min="0" placeholder="0" className={`${commonInputClass} focus:ring-2 focus:ring-blue-500 outline-none`} />
         </div>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">MRP</label>
+          <label className="block text-xs text-gray-500 mb-1">Base Price</label>
           <input type="number" name="mrp" value={variant.mrp} onChange={handleChange} min="0" placeholder="MRP" className={`${commonInputClass} focus:ring-2 focus:ring-blue-500 outline-none`} />
         </div>
         <div>
-          <label className="block text-xs text-gray-500 mb-1">Base Price</label>
+          <label className="block text-xs text-gray-500 mb-1">MRP</label>
           {/* Note: Changed to type="number" to match your schema */}
           <input type="number" name="basePrice" value={variant.basePrice} onChange={handleChange} placeholder="+/- Amount" className={`${commonInputClass} focus:ring-2 focus:ring-blue-500 outline-none`} />
         </div>
@@ -934,14 +934,14 @@ onChange={(e)=>setVariant(prev=>({...prev,attributes:{...prev.attributes,value:e
             </div>
             
              <div className="flex flex-col">
-              <span className="text-xs text-gray-500 dark:text-gray-400 mb-1">MRP</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 mb-1">Base Price</span>
               <span className="text-sm font-bold text-gray-900 dark:text-white">
                 {item?.mrp}
               </span>
             </div>
 
             <div className="flex flex-col">
-              <span className="text-xs text-gray-500 dark:text-gray-400 mb-1">Base Price</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 mb-1">MRP</span>
               <span className="text-sm font-medium text-gray-500 dark:text-gray-400 line-through">
                 {item?.basePrice}
               </span>
