@@ -15,6 +15,7 @@ import { FcDeleteColumn } from 'react-icons/fc';
 const AddProductPage = () => {
 
   const [tagInput, setTagInput] = useState("")
+  const [loadingProduct,setLoadingProduct]=useState(false)
   const [keywordInput, setKeywordInput] = useState("")
  const route = useRouter()
 const [variant, setVariant] = useState({
@@ -146,7 +147,7 @@ const [variant, setVariant] = useState({
 
  const handleSubmit = async (e) => {
   e.preventDefault();
-
+   setLoadingProduct(true)
 
 
   if(productData.shortDescription.trim().length > 200 ){
@@ -199,7 +200,9 @@ try {
 } catch (error) {
  toast.error(error.response.data.message)
 }
-
+finally{
+  setLoadingProduct(false)
+}
 
 
   
@@ -290,10 +293,11 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
            
 
             <button 
+            disabled={loadingProduct}
               onClick={handleSubmit}
               className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white px-6 py-2.5 rounded-lg shadow-md transition-all font-medium"
             >
-              <MdSave className="text-xl" /> Save Product
+              <MdSave className="text-xl" /> {loadingProduct? "Loading...":"Save Product"} 
             </button>
           </div>
         </div>
