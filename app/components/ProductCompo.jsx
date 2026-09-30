@@ -429,9 +429,27 @@ const ProductCompo = () => {
                       </td>
 
                       {/* Category */}
-                      <td className="p-4 align-middle">
+                      <td className="p-4  flex items-center gap-2">
 
-                        <span className="
+{item?.category?.map((catItm)=><span className="
+                          px-2.5
+                          py-1
+                          rounded-full
+                          text-xs
+                          font-medium
+                          border
+                          bg-yellow-100
+                          text-yellow-800
+                          border-yellow-200
+                          dark:bg-yellow-900/30
+                          dark:text-yellow-300
+                          dark:border-yellow-800
+                        ">
+                          {catItm?.name || "Uncategorized"}
+                        </span>)}
+
+
+                        {/* <span className="
                           px-2.5
                           py-1
                           rounded-full
@@ -446,7 +464,7 @@ const ProductCompo = () => {
                           dark:border-yellow-800
                         ">
                           {item?.category?.name || "Uncategorized"}
-                        </span>
+                        </span> */}
 
                       </td>
 

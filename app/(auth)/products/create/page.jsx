@@ -43,7 +43,7 @@ const [variant, setVariant] = useState({
     tags: [],
     images: [],
     thumbnail:null,
-    category:"",
+    category:[],
     isFeatured: false,
     isNewArrived: false,
     isBestSaller: false,
@@ -166,7 +166,7 @@ const [variant, setVariant] = useState({
   formData.append("isActive", productData.isActive);
   formData.append("isTop", productData.isTop);
   formData.append("isTopImage", productData.isTopImage);
-  formData.append("category", productData.category);
+  formData.append("category",JSON.stringify(productData.category));
   formData.append("details",JSON.stringify(productData.details));
   formData.append(`tags`,JSON.stringify(productData.tags));
   productData.images.forEach((file,index) => {
@@ -339,7 +339,70 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
               <div>
                 <label className={labelClass}>Category (ID)</label>
                
-                <select name="category" id="" value={productData?.category}    onChange={handleInputChange}  className={`${commonInputClass} bg-gray-100 dark:bg-gray-900  text-gray-500`}>
+
+
+<div className="flex flex-wrap gap-3">
+  {allCategory.length > 0 &&
+    allCategory.map((item) => {
+      const isSelected = productData.category.includes(item._id);
+
+      return (
+        <button
+          type="button"
+          key={item._id}
+          onClick={() => {
+            setProductData((prev) => ({
+              ...prev,
+              category: isSelected
+                ? prev.category.filter((id) => id !== item._id)
+                : [...prev.category, item._id],
+            }));
+          }}
+          className={`
+            px-4 py-2 rounded-lg border text-sm font-medium
+            transition-all duration-200 cursor-pointer
+            active:scale-95
+            focus:outline-none focus:ring-2 focus:ring-blue-500/40
+
+            ${
+              isSelected
+                ? `
+                  bg-blue-600 text-white
+                  border-blue-600
+                  hover:bg-blue-700
+                  dark:bg-blue-500 dark:border-blue-500
+                  dark:hover:bg-blue-600
+                `
+                : `
+                  bg-white text-gray-700
+                  border-gray-300
+                  hover:bg-gray-100
+                  hover:border-blue-400
+                  hover:text-blue-600
+
+                  dark:bg-gray-800
+                  dark:text-gray-200
+                  dark:border-gray-700
+                  dark:hover:bg-gray-700
+                  dark:hover:border-blue-500
+                  dark:hover:text-blue-400
+                `
+            }
+          `}
+        >
+          {item.name}
+
+          {isSelected && (
+            <span className="ml-2">✓</span>
+          )}
+        </button>
+      );
+    })}
+</div>
+
+
+               
+                {/* <select name="category" id="" value={productData?.category}    onChange={handleInputChange}  className={`${commonInputClass} bg-gray-100 dark:bg-gray-900  text-gray-500`}>
 <option  > --select category-- </option>
 
  { allCategory.length >0 && allCategory.map((item,index)=><option value={item._id} key={index}>
@@ -349,7 +412,7 @@ setProductData((prev)=>({...prev,variants:filterVarinats}))
 }
 
 
-                </select>
+                </select> */}
               </div>
 
               <div className="md:col-span-2">

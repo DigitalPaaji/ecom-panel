@@ -325,10 +325,14 @@ const ViewCompo = ({ slug }) => {
                   <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-3 flex items-center">
                     <BiCategory className="mr-1" /> Category & Tags
                   </h3>
-                  <div className="bg-indigo-50 dark:bg-indigo-900/10 rounded-lg p-4 mb-4 border border-indigo-100 dark:border-indigo-900/30">
-                    <p className="font-medium text-indigo-700 dark:text-indigo-300">
-                      {product.category?.name || product.category || 'Uncategorized'}
-                    </p>
+                  <div className="bg-indigo-50   flex flex-wrap gap-1 dark:bg-indigo-900/10 rounded-lg p-4 mb-4 border border-indigo-100 dark:border-indigo-900/30">
+                   
+                   {product?.category?.map((itm)=><p key={itm._id} className="font-medium text-indigo-700 dark:text-indigo-300">
+                      {itm?.name|| 'Uncategorized'}
+                    </p>)
+
+                   }
+                   
                   </div>
                   
                   {product.tags && product.tags.length > 0 && (

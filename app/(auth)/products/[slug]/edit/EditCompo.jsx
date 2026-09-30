@@ -35,7 +35,7 @@ const EditCompo = ({ slug }) => {
     seo: { keywords: [], metaDescription: "", metaTitle: "" },
     newimages: [],
     isTopImage:0,
-    category: "",
+    category: [],
     details: {},
     variants: [] // Added variants array
   });
@@ -267,7 +267,7 @@ const toggleVariantImage = (variantIndex, imageIndex) => {
     formData.append("name", product.name);
     formData.append("description", product.description);
     formData.append("shortDescription", product.shortDescription);
-    formData.append("category", product.category);
+    formData.append("category",JSON.stringify(product.category));
 
  
     formData.append("isActive", product.isActive);
@@ -368,16 +368,64 @@ formData.append("newthumbnail",product?.newthumbnail)
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-zinc-500 dark:text-zinc-400 mb-2">Category</label>
-                  <select
-                    value={product.category}
-                    onChange={(e) => setProduct(prev => ({ ...prev, category: e.target.value }))}
-                    className="w-full bg-zinc-50 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-xl p-3 outline-none focus:ring-2 focus:ring-blue-500 dark:text-white"
-                  >
-                    <option value="">Select Category</option>
-                    {allCategory.map((item, index) => (
-                      <option key={index} value={item._id}>{item.name}</option>
-                    ))}
-                  </select>
+                 <div className="flex flex-wrap gap-3">
+  {allCategory.length > 0 &&
+    allCategory.map((item) => {
+      const isSelected = product.category.includes(item._id);
+
+      return (
+        <button
+          type="button"
+          key={item._id}
+          onClick={() => {
+            setProduct((prev) => ({
+              ...prev,
+              category: isSelected
+                ? prev.category.filter((id) => id !== item._id)
+                : [...prev.category, item._id],
+            }));
+          }}
+          className={`
+            px-4 py-2 rounded-lg border text-sm font-medium
+            transition-all duration-200 cursor-pointer
+            active:scale-95
+            focus:outline-none focus:ring-2 focus:ring-blue-500/40
+
+            ${
+              isSelected
+                ? `
+                  bg-blue-600 text-white
+                  border-blue-600
+                  hover:bg-blue-700
+                  dark:bg-blue-500 dark:border-blue-500
+                  dark:hover:bg-blue-600
+                `
+                : `
+                  bg-white text-gray-700
+                  border-gray-300
+                  hover:bg-gray-100
+                  hover:border-blue-400
+                  hover:text-blue-600
+
+                  dark:bg-gray-800
+                  dark:text-gray-200
+                  dark:border-gray-700
+                  dark:hover:bg-gray-700
+                  dark:hover:border-blue-500
+                  dark:hover:text-blue-400
+                `
+            }
+          `}
+        >
+          {item.name}
+
+          {isSelected && (
+            <span className="ml-2">✓</span>
+          )}
+        </button>
+      );
+    })}
+</div>
                 </div>
               
               </div>
